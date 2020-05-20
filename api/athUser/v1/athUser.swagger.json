@@ -1,0 +1,277 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "api/athUser/v1/athUser.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/EditUser": {
+      "post": {
+        "operationId": "EditUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UserGenericReply"
+            }
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/v1/EmailVerifyUser": {
+      "post": {
+        "operationId": "EmailVerifyUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UserGenericReply"
+            }
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/v1/ForgotPassword": {
+      "post": {
+        "operationId": "ForgotPasswordUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UserForgotPasswordReply"
+            }
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/v1/LoginUser": {
+      "post": {
+        "operationId": "LoginUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UserLoginReply"
+            }
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/v1/PhoneVerifyUser": {
+      "post": {
+        "operationId": "PhoneVerifyUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UserGenericReply"
+            }
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/v1/ResendCode": {
+      "post": {
+        "operationId": "ResendCode",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UserSignupReply"
+            }
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/v1/ResetPassword": {
+      "post": {
+        "operationId": "ResetPasswordUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UserGenericReply"
+            }
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/v1/SignupUser": {
+      "post": {
+        "operationId": "SignupUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UserSignupReply"
+            }
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "UserCreateCompanyReply": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/UserCreateCompanyReplyData"
+        },
+        "status": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "UserCreateCompanyReplyData": {
+      "type": "object",
+      "properties": {
+        "company_id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "UserForgotPasswordReply": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/UserForgotReplyData"
+        }
+      }
+    },
+    "UserForgotReplyData": {
+      "type": "object",
+      "properties": {
+        "reset_password_token": {
+          "type": "string"
+        }
+      }
+    },
+    "UserGenericReply": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "UserLoginReply": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/UserLoginReplyData"
+        },
+        "status": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "UserLoginReplyData": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string"
+        }
+      }
+    },
+    "UserSignUpReplyData": {
+      "type": "object",
+      "properties": {
+        "verify_phone_token": {
+          "type": "string"
+        },
+        "user_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "company_id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "UserSignupReply": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/UserSignUpReplyData"
+        },
+        "status": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

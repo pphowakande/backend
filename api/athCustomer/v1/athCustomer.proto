@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package Customer;
+
+import "google/api/annotations.proto";
+
+
+//The Customer service definition.
+service Customer {
+
+    rpc CreateCustomer (CreateCustomerRequest) returns (CreateCustomerReply) {
+        option (google.api.http) = {
+            post: "/v1/CreateCustomer"
+        };
+    }
+
+    rpc EditCustomer (EditCustomerRequest) returns (GenericReply) {
+        option (google.api.http) = {
+            post: "/v1/EditCustomer"
+        };
+    }
+}
+
+message EditCustomerRequest {
+    string first_name = 1;
+    string last_name = 2;
+    string phone = 3;
+    int32 updated_by = 4;
+    int32 user_id = 5;
+}
+
+message CreateCustomerRequest {
+    string first_name = 1;
+    string last_name = 2;
+    string email = 3;
+    string phone = 4;
+    string user_source = 5;
+    int32 created_by = 6;
+}
+
+message CreateCustomerReply {
+    CreateCustomerReplyData data = 1;
+    bool status = 2;
+    string message = 3;
+    string error = 4;
+}
+
+message CreateCustomerReplyData {
+    int32 customer_id = 1;
+}
+
+message GenericReply {
+    bool status = 1;
+    string message = 2;
+    string error = 3;
+}
+
+message Empty {
+};
+
+

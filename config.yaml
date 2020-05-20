@@ -1,0 +1,7 @@
+
+dbhost: "127.0.0.1"
+dbuser: "poonam"
+dbpass: "poonam"
+dbname: "Athlima"
+grpcurl: "0.0.0.0:50051"
+bkmEndpoint: "http://in-cs-app.sit.n3b.bookmyshow.org/"

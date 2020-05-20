@@ -1,0 +1,217 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "api/athFacility/v1/athFacility.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/BookFacility": {
+      "post": {
+        "operationId": "BookFacility",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/FacilityBookFacilityReply"
+            }
+          }
+        },
+        "tags": [
+          "Facility"
+        ]
+      }
+    },
+    "/v1/CreateFacility": {
+      "post": {
+        "operationId": "CreateFacility",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/FacilityCreateFacilityReply"
+            }
+          }
+        },
+        "tags": [
+          "Facility"
+        ]
+      }
+    },
+    "/v1/EditFacility": {
+      "post": {
+        "operationId": "EditFacility",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/FacilityGenericReply"
+            }
+          }
+        },
+        "tags": [
+          "Facility"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "FacilityBookFacilityReply": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/FacilityBookFacilityReplyData"
+        },
+        "status": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "FacilityBookFacilityReplyData": {
+      "type": "object",
+      "properties": {
+        "booking_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "booking_no": {
+          "type": "string"
+        }
+      }
+    },
+    "FacilityCreateFacilityReply": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/FacilityCreateFacilityReplyData"
+        },
+        "status": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "FacilityCreateFacilityReplyData": {
+      "type": "object",
+      "properties": {
+        "facility_id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "FacilityCustomRates": {
+      "type": "object",
+      "properties": {
+        "facility_slot_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "user_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "facility_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "date": {
+          "type": "string"
+        },
+        "slot_price": {
+          "type": "number",
+          "format": "float"
+        },
+        "available": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "FacilityGenericReply": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "FacilityWeekData": {
+      "type": "object",
+      "properties": {
+        "weekdays": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/FacilityWeekslots"
+          }
+        },
+        "weekends": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/FacilityWeekslots"
+          }
+        }
+      }
+    },
+    "FacilityWeekDataEdit": {
+      "type": "object",
+      "properties": {
+        "weekdays": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number",
+            "format": "float"
+          }
+        },
+        "weekends": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number",
+            "format": "float"
+          }
+        }
+      }
+    },
+    "FacilityWeekslots": {
+      "type": "object",
+      "properties": {
+        "price": {
+          "type": "number",
+          "format": "float"
+        },
+        "slot": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

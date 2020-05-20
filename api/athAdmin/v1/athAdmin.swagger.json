@@ -1,0 +1,61 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "api/athAdmin/v1/athAdmin.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {},
+  "definitions": {
+    "AdminGenericReply": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "AdminLoginAdminReply": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/AdminLoginAdminReplyData"
+        },
+        "status": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "AdminLoginAdminReplyData": {
+      "type": "object",
+      "properties": {
+        "admin_id": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

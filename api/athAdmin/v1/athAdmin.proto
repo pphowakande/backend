@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package Admin;
+
+import "google/api/annotations.proto";
+
+
+//The Admin service definition.
+service Admin {
+    
+    rpc LoginAdmin (LoginAdminRequest) returns (LoginAdminReply){}
+    rpc SignupAdmin (SignupAdminRequest) returns (GenericReply){}
+
+}
+
+message GenericReply {
+    bool status = 1;
+    string message = 2;
+    string error = 3;
+}
+
+message SignupAdminRequest {
+    string name = 1;
+    string user_name  = 2;
+    string email = 3;
+    string password = 4;
+    int32 created_by = 5;
+}
+
+message LoginAdminRequest {
+    string email = 1;
+    string password = 3;
+}
+
+message LoginAdminReply {
+    LoginAdminReplyData data = 1;
+    bool status = 2;
+    string message = 3;
+    string error = 4;
+}
+
+message LoginAdminReplyData {
+    string admin_id = 1;
+}

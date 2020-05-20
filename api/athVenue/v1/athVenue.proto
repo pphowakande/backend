@@ -1,0 +1,105 @@
+syntax = "proto3";
+
+package Venue;
+
+import "google/api/annotations.proto";
+
+
+//The Venue service definition.
+service Venue {
+
+    rpc CreateVenue (CreateVenueRequest) returns (CreateVenueReply) {
+        option (google.api.http) = {
+            post: "/v1/CreateVenue"
+        };
+    }
+
+    rpc EditVenue (EditVenueRequest) returns (GenericReply) {
+        option (google.api.http) = {
+            post: "/v1/EditVenue"
+        };
+    }
+
+    rpc CreateVenueHoliday (CreateVenueHolidayRequest) returns (CreateVenueHolidayReply) {
+        option (google.api.http) = {
+            post: "/v1/CreateVenueHoliday"
+        };
+    }
+
+    rpc DeleteVenueHoliday (DeleteVenueHolidayRequest) returns (GenericReply) {
+        option (google.api.http) = {
+            post: "/v1/DeleteVenueHoliday"
+        };
+    }
+}
+
+message DeleteVenueHolidayRequest {
+    int32 holiday_id = 1;
+    int32 venue_id = 2;
+}
+
+message GenericReply {
+    bool status = 1;
+    string message = 2;
+    string error = 3;
+}
+
+message CreateVenueHolidayRequest {
+    string title = 1;
+    int32 day = 2;
+    string month = 3;
+    string year = 4;
+    int32 venue_id = 5;
+    int32 created_by = 6;
+}
+
+message CreateVenueHolidayReply {
+    CreateVenueHolidayReplyData data = 1;
+    bool status = 2;
+    string message = 3;
+    string error = 4;
+}
+
+message CreateVenueHolidayReplyData {
+    int32 holiday_id = 1;
+}
+
+message EditVenueRequest {
+    string name = 1;
+    string description = 2;
+    string address = 3;
+    string phone = 4;
+    string email = 5;
+    int32 updated_by = 6;
+    string get_lat = 7;
+    string get_long = 8;
+    string amenities = 9;
+    int32 venue_id = 10;
+    map<int32, string> hours = 11;
+    repeated int32 delete_hours = 12;
+}
+
+message CreateVenueRequest {
+    string name = 1;
+    string description = 2;
+    string address = 3;
+    string phone = 4;
+    string email = 5;
+    int32 company_id = 6;
+    int32 created_by = 7;
+    string get_lat = 8;
+    string get_long = 9;
+    string amenities = 10;
+    map<int32, string> hours = 11;
+}
+
+message CreateVenueReply {
+    CreateVenuepReplyData data = 1;
+    bool status = 2;
+    string message = 3;
+    string error = 4;
+}
+
+message CreateVenuepReplyData {
+    int32 venue_id = 1;
+}

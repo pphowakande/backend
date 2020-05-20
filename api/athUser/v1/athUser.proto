@@ -1,0 +1,195 @@
+syntax = "proto3";
+
+package User;
+
+import "google/api/annotations.proto";
+//import "google/protobuf/empty.proto";
+
+
+//The User service definition.
+service User {
+    rpc SignupUser (SignupRequest) returns (SignupReply)  {
+        option (google.api.http) = {
+            post: "/v1/SignupUser"
+        };
+    }
+
+    rpc PhoneVerifyUser (PhoneVerifyRequest) returns (GenericReply) {
+        option (google.api.http) = {
+           post: "/v1/PhoneVerifyUser"
+        };
+    }
+
+    rpc EmailVerifyUser (EmailVerifyRequest) returns (GenericReply) {
+        option (google.api.http) = {
+           post: "/v1/EmailVerifyUser"
+        };
+    }
+
+    rpc ResendCode (ResendCodeRequest) returns (SignupReply) {
+        option (google.api.http) = {
+           post: "/v1/ResendCode"
+        };
+    }
+
+    rpc LoginUser (LoginRequest) returns (LoginReply){
+        option (google.api.http) = {
+            post: "/v1/LoginUser"
+        };
+    }
+
+    rpc EditUser (EditUserRequest) returns (GenericReply){
+        option (google.api.http) = {
+            post: "/v1/EditUser"
+        };
+    }
+
+    rpc ForgotPasswordUser (ForgotPasswordRequest) returns (ForgotPasswordReply) {
+        option (google.api.http) = {
+            post: "/v1/ForgotPassword"
+        };
+    }
+
+    rpc ResetPasswordUser (ResetPasswordRequest) returns (GenericReply) {
+        option (google.api.http) = {
+            post: "/v1/ResetPassword"
+        };
+    }
+
+    rpc CreateCompany (CreateCompanyRequest) returns (CreateCompanyReply)  {}
+
+    rpc CreateCompanyUser (CreateCompanyUserRequest) returns (GenericReply)  {}
+
+    rpc CreateOTP (OtpRequest) returns (GenericReply){}
+}
+
+message EditUserRequest {
+    string email = 1;
+    string company_name = 2;
+    string full_name = 3;
+    string contact_no = 4;
+    int32 updated_by = 5;
+    int32 user_id = 6;
+    int32 company_id = 7;
+    int32 profile_id = 8;
+}
+
+message GenericReply {
+    bool status = 1;
+    string message = 2;
+    string error = 3;
+}
+
+message ResendCodeRequest {
+    string contact_no = 1;
+    int32 user_id = 2;
+}
+
+message EmailVerifyRequest {
+    string email = 1;
+}
+
+message OtpRequest {
+    string otp_no = 1;
+    string otp_type = 2;
+    int32 otp_expiry = 3;
+    int32 user_id = 4;
+}
+
+message ResetPasswordRequest {
+    string email =  1;
+    string password = 2;
+}
+
+message SignupRequest {
+    string email = 1;
+    string password = 2;
+    string company_name = 3;
+    string full_name = 4;
+    string contact_no = 5;
+    int32 created_by = 6;
+    string user_source = 7;
+}
+
+message SignupReply {
+    SignUpReplyData data = 1;
+    bool status = 2;
+    string message = 3;
+    string error = 4;
+}
+
+message PhoneVerifyRequest {
+    string code = 1;
+    string type = 2;
+    string email = 3;
+}
+
+message LoginRequest {
+    string email = 1;
+    string password = 3;
+}
+
+message LoginReply {
+    LoginReplyData data = 1;
+    bool status = 2;
+    string message = 3;
+    string error = 4;
+}
+
+message ForgotPasswordRequest {
+    string email = 1;
+}
+
+message ForgotPasswordReply {
+    bool status = 1;
+    string message = 2;
+    string error = 3;
+    ForgotReplyData data = 4;
+}
+
+message ForgotReplyData {
+    string reset_password_token = 1;
+}
+
+message LoginReplyData {
+    string user_id = 1;
+}
+
+message SignUpReplyData {
+    string verify_phone_token = 1;
+    int32 user_id = 2;
+    int32 company_id = 3;
+}
+
+message Empty {
+};
+
+message CreateCompanyRequest {
+    string company_name = 1;
+    string address = 2;
+    string contact_no = 3;
+    string email_address = 4;
+    string gst_no = 5;
+    string gst_no_file = 6;
+    string pan_no = 7;
+    string pan_no_file = 8;
+    string bank_account_no = 9;
+    int32 created_by = 10;
+}
+
+message CreateCompanyReply {
+    CreateCompanyReplyData data = 1;
+    bool status = 2;
+    string message = 3;
+    string error = 4;
+}
+
+message CreateCompanyReplyData {
+    int32 company_id = 1;
+}
+
+message CreateCompanyUserRequest {
+    int32 company_id = 1;
+    int32 user_id = 2;
+    int32 created_by = 3;
+}

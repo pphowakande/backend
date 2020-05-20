@@ -1,0 +1,118 @@
+syntax = "proto3";
+
+package Facility;
+
+import "google/api/annotations.proto";
+
+
+//The Facility service definition.
+service Facility {
+
+    rpc CreateFacility (CreateFacilityRequest) returns (CreateFacilityReply) {
+        option (google.api.http) = {
+            post: "/v1/CreateFacility"
+        };
+    }
+
+    rpc EditFacility (EditFacilityRequest) returns (GenericReply) {
+        option (google.api.http) = {
+            post: "/v1/EditFacility"
+        };
+    }
+
+    rpc BookFacility (BookFacilityRequest) returns (BookFacilityReply) {
+        option (google.api.http) = {
+            post: "/v1/BookFacility"
+        };
+    }
+}
+
+message WeekDataEdit {
+    map<string, float> weekdays = 1;
+    map<string, float> weekends = 2;
+}
+
+message WeekData {
+    map<string, Weekslots> weekdays = 1;
+    map<string, Weekslots> weekends = 2;
+}
+
+message Weekslots {
+    float price = 1;
+    string slot = 2;
+}
+
+message GenericReply {
+    bool status = 1;
+    string message = 2;
+    string error = 3;
+}
+
+message BookFacilityRequest {
+    int32 created_by = 1;
+    string booking_date = 2;
+    float base_total_amount = 3;
+    float discount_amount = 4;
+    float booking_amount = 5;
+    int32 facility_slot_id = 6;
+    string slot_days = 7;
+    string slot_from_date = 8;
+    string slot_to_date = 9;
+    float slot_booking_price = 10;
+    float booking_fee = 11;
+}
+
+message BookFacilityReply {
+    BookFacilityReplyData data = 1;
+    bool status = 2;
+    string message = 3;
+    string error = 4;
+}
+
+message BookFacilityReplyData {
+    int32 booking_id = 1;
+    string booking_no = 2;
+}
+
+message CreateFacilityRequest {
+    string name = 1;
+    int32 venue_id = 2;
+    float base_price = 3;
+    int32 time_slot = 4;
+    string sport_categories = 5;
+    int32 created_by = 6;
+    WeekData week_data = 7;
+}
+
+message EditFacilityRequest {
+    string name = 1;
+    float base_price = 2;
+    string sport_categories = 3;
+    int32 updated_by = 4;
+    WeekDataEdit week_data = 5;
+    int32 facility_id = 6;
+    repeated CustomRates custom_rates = 7;
+}
+
+message CustomRates {
+    int32 facility_slot_id = 1;
+    int32 user_id = 2;
+    int32 facility_id = 3;
+    string date = 4;
+    float slot_price = 5;
+    bool available = 6;
+}
+
+message CreateFacilityReply {
+    CreateFacilityReplyData data = 1;
+    bool status = 2;
+    string message = 3;
+    string error = 4;
+}
+
+message CreateFacilityReplyData {
+    int32 facility_id = 1;
+}
+
+message Empty {
+};
